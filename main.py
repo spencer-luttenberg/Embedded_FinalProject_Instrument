@@ -39,7 +39,9 @@ t1.start()
 while run:
     clock.tick(FPS)
     WIN.fill((255,255,255))
-    my_slider.run()
+    my_slider.run(0) #takes an input of current state taken from the array; outputs current "State" of UI
+
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False

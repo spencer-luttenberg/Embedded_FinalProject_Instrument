@@ -16,6 +16,18 @@ RECORDING_SONG = 1
 #The user may not press the pause button
 PAUSED = 0
 
+GLOBAL_SONG_FREQ = 12
+
+
+NORMAL_BUTTON_STATE = 0
+PUSHED_BUTTON_STATE = 1
+GRAYED_BUTTON_STATE = 2
+
+SONG_TYPE = 0
+CSV_TYPE = 1
+
+
+DEFAULT_SONG = "resources/earth_wind_fire.mp3"
 
 STATE_000_IMG_PATH = "resources/000.jpg"
 STATE_001_IMG_PATH = "resources/001.jpg"

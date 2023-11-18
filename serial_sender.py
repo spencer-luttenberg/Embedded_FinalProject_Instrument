@@ -2,6 +2,8 @@ import serial
 import time
 import keyboard  # using module keyboard
 
+
+
 class Serial_Sender:
     def __init__(self, COM_PORT, FREQ):
         #self.ser = serial.Serial('COM3', 9600, timeout=1000, parity=serial.PARITY_EVEN, stopbits=1)
@@ -20,5 +22,5 @@ class Serial_Sender:
                 pass
             outgoing_data = tmp_outgoing_num.to_bytes(1, 'big')
             #self.ser.write(outgoing_data)
-            print(outgoing_data)
+            #print(outgoing_data)
         time.sleep(1/self.FREQ)

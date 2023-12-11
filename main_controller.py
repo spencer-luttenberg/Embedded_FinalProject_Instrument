@@ -6,7 +6,7 @@ import vlc
 from tkinter import filedialog
 import csv
 import serial
-
+from tk_prompt import tkInterSerialSender
 class main_controller:
     def __init__(self):
         self.current_song_array = [0] * FILE_LENGTH
@@ -117,17 +117,24 @@ class main_controller:
             self.save_file()
         if(import_track_pushed==True):
             tmp_file_path = self.import_file(CSV_TYPE)
-            with open(tmp_file_path) as file_obj: 
-                reader_obj = csv.reader(file_obj) 
-                for row in reader_obj: 
-                    tmp_list = row
-                    tmp_int_list = [int(i) for i in tmp_list]
-                    self.current_song_array = tmp_int_list
+            if(tmp_file_path!=""):
+                with open(tmp_file_path) as file_obj: 
+                    reader_obj = csv.reader(file_obj) 
+                    for row in reader_obj: 
+                        tmp_list = row
+                        tmp_int_list = [int(i) for i in tmp_list]
+                        self.current_song_array = tmp_int_list
         if(send_to_fish_pushed==True):
-            self.ser = serial.Serial('COM3', 9600, timeout=1000, parity=serial.PARITY_EVEN, stopbits=1)
-            tmp_outgoing_bytes = [i.to_bytes(1, 'big') for i in self.current_song_array]
-            self.ser.write(tmp_outgoing_bytes)
-            self.ser.close()
+            #self.ser = serial.Serial('COM3', 9600, timeout=1000, parity=serial.PARITY_EVEN, stopbits=1)
+            #tmp_outgoing_bytes = [i.to_bytes(1, 'big') for i in self.current_song_array]
+            #tmp_list = self.current_song_array
+
+            tmp_tk_object = tkInterSerialSender(self.current_song_array)
+            #tmp_list.inster(0, X)
+            #tmp_byte_array = bytearray(tmp_list)
+            #self.ser.write(tmp_byte_array)
+            #self.ser.close()
+            
         #inputs: play, record, pause; slider
         #outputs: position pointer, output state, percentage of song, output_fish_state (NONE IF NOT PLAYING)
         if(self.current_state==PAUSED):
